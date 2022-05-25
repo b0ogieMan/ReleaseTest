@@ -16,22 +16,41 @@ jobs:
     steps:
       - name: Checkout current repo
         uses: actions/checkout@v3
-      - run: mvn clean package install | echo "done!"
-      - run: mkdir staging && cp target/*.jar staging
-      - uses: actions/upload-artifact@v3
+        
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Target
-          path: staging
-      - name: Download a single artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: Target
-      - run: ls
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          automatic_release_tag: "latest"
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
           prerelease: false
-          files: |
-            LICENSE.txt
-            *.jar
+        
+      - name: Generate package
+        run: mvn clean package install | echo "done!"
+        
+      - name: Store JARs in staging
+        run: mkdir staging && cp target/*.jar staging
+        
+      - name: Build docs with Maven
+        run: mvn javadoc:javadoc
+        
+      - name: Copy to Documentation Website Location
+        run: |
+          rm -rf docs
+          cp -rf target/site/apidocs/. docs
+        
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: docs
+          asset_name: docs
+          asset_content_type: text/html
+        
+      
