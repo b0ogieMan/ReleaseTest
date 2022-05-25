@@ -1,0 +1,16 @@
+ch/heigvd/app/Build.class
+ch/heigvd/app/commands/Init.class
+ch/heigvd/app/commands/Layout.class
+ch/heigvd/app/utils/parsers/JsonConverter.class
+ch/heigvd/app/utils/parsers/PageConfig.class
+ch/heigvd/app/commands/Build.class
+ch/heigvd/app/commands/Build$1.class
+ch/heigvd/app/Build$1.class
+ch/heigvd/app/commands/Clean.class
+ch/heigvd/app/Layout.class
+ch/heigvd/app/commands/New.class
+ch/heigvd/app/Main$ManifestVersionProvider.class
+ch/heigvd/app/utils/parsers/MarkdownConverter.class
+ch/heigvd/app/commands/Serve.class
+ch/heigvd/app/utils/parsers/SiteConfig.class
+ch/heigvd/app/Main.class

@@ -1,0 +1,6 @@
+ch/heigvd/app/utils/MarkdownConverterTest.class
+ch/heigvd/app/ServeTest.class
+ch/heigvd/app/utils/JsonConverterTest.class
+ch/heigvd/app/BuildTest.class
+ch/heigvd/app/MainTest.class
+ch/heigvd/app/utils/TestDirectoryManager.class

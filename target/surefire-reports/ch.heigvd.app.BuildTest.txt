@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: ch.heigvd.app.BuildTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in ch.heigvd.app.BuildTest
+statiqueBuildShouldCopyRightFilesAndConvertMarkdownToHTML(ch.heigvd.app.BuildTest)  Time elapsed: 0.015 s  <<< FAILURE!
+java.lang.AssertionError: Build folder could not be created
+	at ch.heigvd.app.BuildTest.statiqueBuildShouldCopyRightFilesAndConvertMarkdownToHTML(BuildTest.java:107)
+
