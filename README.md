@@ -1,7 +1,7 @@
 # projet-bijelic_coke_mbayo_salhi
 ## Authors
 - Alen Bijelic
-- Anthony Coke
+- Anthony Cokedwawdawd
 - Guilain Mbayo
 - Mehdi Salhi
 
