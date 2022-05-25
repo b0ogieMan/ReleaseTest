@@ -38,7 +38,7 @@ jobs:
         run: mvn javadoc:javadoc
         
       - run: |
-          zip --junk-paths my-artifact target/site/apidocs/.
+          zip --junk-paths my-artifact target/site/apidocs/*
           
       - name: Upload Release Asset
         id: upload-release-asset 
