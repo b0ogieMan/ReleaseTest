@@ -24,3 +24,5 @@ This project consists in the creation of a static website generator. It is given
 ## Contact
 
 ## Acknowledgments
+
+wadawdaw
