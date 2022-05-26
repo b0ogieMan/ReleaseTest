@@ -28,17 +28,13 @@ jobs:
           draft: false
           prerelease: false
         
-      - name: Generate package
-        run: mvn clean package install | echo "done!"
+      - name: Generate package and build javadoc
+        run: mvn clean package javadoc:javadoc install | echo "done!"
         
       - name: Store JARs in staging
         run: mkdir staging && cp target/*.jar staging
         
-      - name: Build docs with Maven
-        run: mvn javadoc:javadoc
-        
-      - run: |
-          zip --junk-paths my-artifact target/site/apidocs/*
+      - run: zip -r my-artifact.zip target/site/apidocs/
           
       - name: Upload Release Asset
         id: upload-release-asset 
