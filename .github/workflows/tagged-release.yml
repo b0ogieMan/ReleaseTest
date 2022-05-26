@@ -17,23 +17,21 @@ jobs:
       - name: Checkout current repo
         uses: actions/checkout@v3
         
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-        
       - name: Generate package and build javadoc
         run: mvn clean package javadoc:javadoc install | echo "done!"
         
       - name: Store JARs in staging
-        run: mkdir staging && cp target/*.jar staging
-        
+        run: cp target/*.jar .
+      
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          files: |
+            LICENSE.txt
+            *.jar     
+
       - run: zip -r javadoc.zip target/site/apidocs/
           
       - name: Upload javadoc as a zip file
